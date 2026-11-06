@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS station (id INTEGER PRIMARY KEY CHECK(id=1), name TEXT NOT NULL, stream_url TEXT NOT NULL DEFAULT '', description TEXT NOT NULL DEFAULT '', updated_at INTEGER NOT NULL);
+INSERT OR IGNORE INTO station(id,name,stream_url,description,updated_at) VALUES(1,'WarLike Radio','','Station officielle WarLike',0);
+CREATE TABLE IF NOT EXISTS shows (id TEXT PRIMARY KEY, day INTEGER NOT NULL CHECK(day BETWEEN 0 AND 6), start_time TEXT NOT NULL, duration_minutes INTEGER NOT NULL CHECK(duration_minutes BETWEEN 1 AND 1440), title TEXT NOT NULL, host TEXT NOT NULL DEFAULT '');
+CREATE INDEX IF NOT EXISTS idx_shows_day ON shows(day,start_time);
