@@ -1,0 +1,10 @@
+const $=id=>document.getElementById(id);let state=null;
+function status(text){$('controlStatus').textContent=text;}
+async function req(path,body){const opts={cache:'no-store'};if(body!==undefined){opts.method='POST';opts.headers={'content-type':'application/json','authorization':'Bearer '+$('adminToken').value};opts.body=JSON.stringify(body);}const response=await fetch('/api/'+path,opts);const data=await response.json();if(!response.ok)throw Error(data.error||'Erreur réseau');return data;}
+async function load(){try{const data=await req('station');state=data;$('stationName').value=data.station.name;$('stationDesc').value=data.station.description;$('stationStream').value=data.station.stream_url;$('showTitle').value=data.live?.show_title||'';$('host').value=data.live?.host||'';$('announcement').value=data.live?.message||'';status(data.live?.is_on_air?'● ON AIR déclaré · Émetteur non vérifié':'○ Hors antenne');}catch(e){status('Service indisponible : '+e.message);}}
+const fields=()=>({show_title:$('showTitle').value.trim(),host:$('host').value.trim(),message:$('announcement').value.trim()});
+async function run(action){try{if(!$('adminToken').value||$('adminToken').value.length<24)throw Error('Saisis le jeton administrateur.');for(const b of document.querySelectorAll('#controlForm button'))b.disabled=true;await action();await load();}catch(e){status('Opération refusée : '+e.message);}finally{for(const b of document.querySelectorAll('#controlForm button'))b.disabled=false;}}
+$('saveStation').onclick=()=>run(()=>req('station',{name:$('stationName').value.trim(),description:$('stationDesc').value.trim(),stream_url:$('stationStream').value.trim()}));
+$('goLive').onclick=()=>run(async()=>{if(!confirm('Déclarer la station ON AIR ? Vérifie que ton flux personnel est actif et autorisé.'))return;await req('on-air',{is_on_air:true,...fields()});});
+$('stopLive').onclick=()=>run(()=>req('on-air',{is_on_air:false,...fields()}));
+document.addEventListener('visibilitychange',()=>{if(document.hidden)$('adminToken').value='';});load();
