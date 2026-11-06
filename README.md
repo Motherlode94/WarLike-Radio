@@ -28,3 +28,8 @@ Les flux distants et leurs conditions d'utilisation appartiennent à leurs diffu
 - Le catalogue de 15 stations reste le même. Pas de réémission, transcodage ni d'enregistrement de flux.
 
 Pour vérifier la mise à jour : parcourir les radios, enregistrer une favorite, recharger la page, filtrer les favoris, lancer une radio, tester une URL invalide et le bouton Réessayer, importer un fichier puis changer de station. Ces vérifications nécessitent un navigateur et des flux accessibles ; la syntaxe seule ne valide pas la lecture audio.
+
+
+## Écoute musicale et publicités
+
+Le catalogue propose un filtre **♫ Musique uniquement** (FIP, ses déclinaisons, France Musique, Mouv') et un accès rapide à FIP. Ce filtre ne constitue pas une garantie d'absence de publicités. WarLike Radio ne possède aucune régie publicitaire intégrée dans son lecteur local et ne peut pas enlever les annonces insérées dans des flux tiers. La station WarLike ON AIR peut fonctionner sans publicités uniquement si l'équipe maîtrise son contenu et son flux.
