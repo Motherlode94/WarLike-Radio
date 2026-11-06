@@ -8,7 +8,7 @@ async function refresh(){
   const station=data.station||{},live=data.live||{},onAir=live.is_on_air===true&&Boolean(station.stream_url);
   $('stationName').textContent=station.name||'WarLike Radio';
   $('description').textContent=station.description||'';
-  $('status').textContent=onAir?'● ON AIR déclaré · Écoute disponible':'○ Hors antenne';
+  $('status').textContent=onAir?'● ON AIR déclaré · Lecteur proposé':'○ Hors antenne';
   $('nowOnAir').textContent=onAir?[(live.show_title||'Émission en direct'),live.host?'Avec '+live.host:'',live.message||''].filter(Boolean).join(' · '):'Aucune émission déclarée en cours.';
   const stream=onAir?station.stream_url:'';
   if(stream!==lastStream){
