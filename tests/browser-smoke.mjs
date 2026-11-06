@@ -18,10 +18,10 @@ try{
  await page.locator('#streamUrl').fill('https://example.org/qa-stream.mp3');
  await page.locator('#streamName').fill('Radio QA');
  await page.locator('#streamForm button[type=submit]').click();
- await page.getByText('Radio QA',{exact:true}).waitFor();
+ await page.locator('#playlist').getByText('Radio QA',{exact:true}).waitFor();
  await page.reload();
  await page.locator('[data-tab="library"]').click();
- await page.getByText('Radio QA',{exact:true}).waitFor();
+ await page.locator('#playlist').getByText('Radio QA',{exact:true}).waitFor();
  assert.deepEqual(errors,[],'Unexpected browser errors');
  console.log('PASS: radio schedule and stream list persist across reloads');
 }finally{await browser.close();}
