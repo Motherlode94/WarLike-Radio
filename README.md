@@ -15,3 +15,16 @@ L'onglet **Radios en direct** propose **15 stations** françaises : France Inter
 **Sources** : [Radio France — Open API, flux des principales stations](https://developers.radiofrance.fr/doc/en/tutorial-by-example/list-brands) ; [répertoire des flux FIP thématiques](https://www.fluxradios.com/Radios-France/France-Radio-France/Fip-Webradios-France).
 
 Les flux distants et leurs conditions d'utilisation appartiennent à leurs diffuseurs. La présence d'une URL publiée n'est pas une licence de rediffusion. WarLike Radio reste un lecteur côté utilisateur : **il n'héberge, ne réémet ni n'enregistre ces flux**. Les canaux peuvent changer d'adresse, être géobloqués ou être incompatibles avec certains navigateurs. Dans ce cas, ouvrir le **site officiel** de la radio. Les flux référencés n'ont pas pu faire l'objet d'une validation de lecture audio depuis l'environnement de développement ; effectuer un test navigateur sur chaque canal avant de qualifier la release de validée.
+
+## Navigation avancée (mise à jour)
+
+- Favoris sur les stations du catalogue et les flux ajoutés par l'utilisateur, sauvegardés dans le stockage local du navigateur.
+- Historique local des 12 dernières stations **sélectionnées**, sans suivi serveur.
+- Filtres par genre, recherche, tri alphabétique, par genre ou par sélection récente et filtrage favoris uniquement.
+- Boutons de favoris et de partage dans le lecteur ; l'URL partagée est le site officiel quand il existe, sinon l'URL du flux personnel.
+- Réessayer un flux en erreur et ouvrir son site officiel lorsque disponible. Le lecteur ne garantit ni la disponibilité ni la qualité des flux externes.
+- Commandes clavier hors champs et contrôles interactifs : **Espace** lecture/pause, **M** couper/remettre le son. Intégration Media Session lorsque le navigateur le permet.
+- Volume mémorisé localement ; fichiers personnels toujours limités à la session.
+- Le catalogue de 15 stations reste le même. Pas de réémission, transcodage ni d'enregistrement de flux.
+
+Pour vérifier la mise à jour : parcourir les radios, enregistrer une favorite, recharger la page, filtrer les favoris, lancer une radio, tester une URL invalide et le bouton Réessayer, importer un fichier puis changer de station. Ces vérifications nécessitent un navigateur et des flux accessibles ; la syntaxe seule ne valide pas la lecture audio.
