@@ -85,11 +85,11 @@ document.addEventListener('click',async e=>{
  const imp=e.target.closest('#emptyImport');if(imp){openImport();return}
  const p=e.target.closest('[data-play]');if(p){await play(p.dataset.play);return}
  const like=e.target.closest('[data-like]');if(like){const id=like.dataset.like;state.likes=state.likes.includes(id)?state.likes.filter(x=>x!==id):[...state.likes,id];save();view();return}
- const add=e.target.closest('[data-add]');if(add){pending=add.dataset.add;if(!state.playlists.length){notify('Créez d’abord une playlist à droite.');return}$('#dialogTrack').textContent=track(pending)?.title||'';$('#chooseList').innerHTML=state.playlists.map(p=>'<option value="'+escape(p.id)+'">'+escape(p.name)+'</option>').join('');$('#playlistModal').classList.remove('hidden');return}
+ const add=e.target.closest('[data-add]');if(add){pending=add.dataset.add;if(!state.playlists.length){const name=window.prompt('Créez une playlist :');if(!name?.trim())return;state.playlists.push({id:crypto.randomUUID(),name:name.trim().slice(0,70),tracks:[]});save()}$('#dialogTrack').textContent=track(pending)?.title||'';$('#chooseList').innerHTML=state.playlists.map(p=>'<option value="'+escape(p.id)+'">'+escape(p.name)+'</option>').join('');$('#playlistModal').classList.remove('hidden');return}
  const g=e.target.closest('[data-group]');if(g){state.view='group';state.groupType=g.dataset.group;state.groupKey=decodeURIComponent(g.dataset.key);save();view();return}
  const open=e.target.closest('[data-openlist]');if(open){state.playlist=open.dataset.openlist;save();view();return}
  if(e.target.id==='deleteList'){state.playlists=state.playlists.filter(p=>p.id!==state.playlist);state.playlist=null;save();view();return}
- if(e.target.id==='newList'){$('#playlistName').focus();return}
+ if(e.target.id==='newList'){const name=window.prompt('Nom de la nouvelle playlist');if(name?.trim()&&!state.playlists.some(p=>p.name.toLowerCase()===name.trim().toLowerCase())){state.playlists.push({id:crypto.randomUUID(),name:name.trim().slice(0,70),tracks:[]});save();view()}return}
  if(e.target.id==='goBack'){state.view='home';view();return}
 });
 $('#saveToList').onclick=()=>{const p=state.playlists.find(x=>x.id===$('#chooseList').value);if(p&&pending&&!p.tracks.includes(pending)){p.tracks.push(pending);save()}$('#playlistModal').classList.add('hidden');view()};
