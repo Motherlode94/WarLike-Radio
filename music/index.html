@@ -19,7 +19,7 @@
 <script>
 (()=>{'use strict';
 const $=s=>document.querySelector(s);
-const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;':'&quot;',"'":'&#39;'}[c]));
+const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=s=>Number.isFinite(s)?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'0:00';
 let state={tracks:[],likes:[],playlists:[],current:null,view:'home',playlist:null,shuffle:false,repeat:0,volume:.75},query='',pending=null,audioUrl=null,dbPromise,queue=[];
 try{const data=JSON.parse(localStorage.getItem('warlike-music-v1'));if(data&&typeof data==='object')state={...state,...data}}catch{}
